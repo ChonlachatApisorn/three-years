@@ -11,14 +11,21 @@ const [input, setInput] = useState('')
 
 const [date, setDate] = useState('')
 const [error, setError] = useState('')
-
+const [count, setCount] = useState(0)
 
 const handleSubmit = () => {
   // Expected format yyyy-mm-dd (from HTML date input)
   if (date === '2023-02-05') {
     router.push('/second')
-  } else {
+  } else if (count == 0) {
     setError('ลองอีกครั้งนะค้าบบ ❌ (First date day)')
+    setCount(1)
+  } else if (count == 1) {
+    setError('Hint 1: ท้องฟ้าาา 🪐')
+    setCount(2)
+  } else {
+    setError('Hint 2: Narit 🌌')
+    setCount(0)
   }
 }
 
@@ -47,7 +54,7 @@ return (
         onClick={handleSubmit}
         className="px-8 py-4 text-lg font-semibold text-white bg-black/70 rounded-2xl backdrop-blur hover:scale-105 transition"
       >
-        Click here ✨
+        Click here ✨🤍
       </button>
       {error && (
         <p className="text-red-400 md:text-10px font-semibold">{error}</p>
